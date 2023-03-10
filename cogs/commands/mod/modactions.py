@@ -466,9 +466,10 @@ class ModActions(commands.Cog):
 
         await ctx.respond_or_edit(embed=log, delete_after=10)
         await submit_public_log(ctx, db_guild, member, log, dmed)
+    
     @mod_and_up()
     @app_commands.guilds(cfg.guild_id)
-    @app_commands.command(description="Mute a user")
+    @app_commands.command(description="Mute a user with a default of 14 days (max)")
     @app_commands.describe(member="User to mute")
     @app_commands.describe(duration="Duration of the mute (i.e 10m, 1h, 1d...)")
     @app_commands.describe(reason="Reason for muting")
