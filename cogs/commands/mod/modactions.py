@@ -466,6 +466,63 @@ class ModActions(commands.Cog):
 
         await ctx.respond_or_edit(embed=log, delete_after=10)
         await submit_public_log(ctx, db_guild, member, log, dmed)
+    @mod_and_up()
+    @app_commands.guilds(cfg.guild_id)
+    @app_commands.command(description="Mute a user")
+    @app_commands.describe(member="User to mute")
+    @app_commands.describe(duration="Duration of the mute (i.e 10m, 1h, 1d...)")
+    @app_commands.describe(reason="Reason for muting")
+    @transform_context
+    async def mute(self, ctx: GIRContext, member: ModsAndAboveMember, duration: Duration = "7w", reason: str = "No reason.") -> None:
+        reason = escape_markdown(reason)
+        reason = escape_mentions(reason)
+
+        now = datetime.now(tz=timezone.utc)
+        delta = duration
+
+        if delta is None:
+            raise commands.BadArgument("Please input a valid duration!")
+
+        if member.is_timed_out():
+            raise commands.BadArgument("This user is already muted.")
+
+        await ctx.defer(ephemeral=False)
+        time = now + timedelta(seconds=delta)
+        if time > now + timedelta(days=14):
+            raise commands.BadArgument("Mutes can't be longer than 14 days!")
+
+        db_guild = guild_service.get_guild()
+        case = Case(
+            _id=db_guild.case_id,
+            _type="MUTE",
+            date=now,
+            mod_id=ctx.author.id,
+            mod_tag=str(ctx.author),
+            reason=reason,
+        )
+
+        case.until = time
+        case.punishment = humanize.naturaldelta(
+            time - now, minimum_unit="seconds")
+
+        try:
+            await member.timeout(time, reason=reason)
+            ctx.tasks.schedule_untimeout(member.id, time)
+        except ConflictingIdError:
+            raise commands.BadArgument(
+                "The database thinks this user is already muted.")
+
+        guild_service.inc_caseid()
+        user_service.add_case(member.id, case)
+
+        log = prepare_mute_log(ctx.author, member, case)
+        await ctx.respond_or_edit(embed=log, delete_after=10)
+
+        log.remove_author()
+        log.set_thumbnail(url=member.display_avatar)
+
+        dmed = await notify_user(member, f"You have been muted in {ctx.guild.name}", log)
+        await submit_public_log(ctx, db_guild, member, log, dmed)
 
 
 async def setup(bot):
