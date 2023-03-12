@@ -86,10 +86,14 @@ class Filters(commands.Cog):
         fw.word = phrase
 
         if bypass == 1:
-            rule = await ctx.guild.fetch_automod_rule(guild_service.get_guild().automod_memberplus_id)
-            rule_id = await rule.edit(trigger=discord.AutoModTrigger(keyword_filter=rule.trigger.keyword_filter + [f"*{phrase}*"]))
-            rule_id = rule_id.id
-            fw.automod_rule_id = rule_id
+            try:
+                rule = await ctx.guild.fetch_automod_rule(guild_service.get_guild().automod_memberplus_id)
+                rule_id = await rule.edit(trigger=discord.AutoModTrigger(keyword_filter=rule.trigger.keyword_filter + [f"*{phrase}*"]))
+                rule_id = rule_id.id
+                fw.automod_rule_id = rule_id
+            except:
+                pass
+            
             # rule_id = await ctx.guild.create_automod_rule(name=f"Filter Word for: {phrase}", event_type=discord.AutoModRuleEventType.message_send,
             #     trigger=discord.AutoModTrigger(type=discord.AutoModRuleTriggerType.keyword,
             #     keyword_filter=[f"*{phrase}*"]), actions=[discord.AutoModRuleAction(channel_id=guild_service.get_guild().channel_automod_log),
@@ -100,10 +104,13 @@ class Filters(commands.Cog):
             # fw.automod_rule_id = rule_id.id
             
         if bypass == 2:
-            rule = await ctx.guild.fetch_automod_rule(guild_service.get_guild().automod_memberpro_id)
-            rule_id = await rule.edit(trigger=discord.AutoModTrigger(keyword_filter=rule.trigger.keyword_filter + [f"*{phrase}*"]))
-            rule_id = rule_id.id
-            fw.automod_rule_id = rule_id
+            try:
+                rule = await ctx.guild.fetch_automod_rule(guild_service.get_guild().automod_memberpro_id)
+                rule_id = await rule.edit(trigger=discord.AutoModTrigger(keyword_filter=rule.trigger.keyword_filter + [f"*{phrase}*"]))
+                rule_id = rule_id.id
+                fw.automod_rule_id = rule_id
+            except:
+                pass
             # rule_id = await ctx.guildcord.create_automod_rule(name=f"Filter Word for: {phrase}", event_type=discord.AutoModRuleEventType.message_send,
             #     trigger=discord.AutoModTrigger(type=discord.AutoModRuleTriggerType.keyword,
             #     keyword_filter=[f"*{phrase}*"]), actions=[discord.AutoModRuleAction(channel_id=guild_service.get_guild().channel_automod_log),
@@ -114,10 +121,13 @@ class Filters(commands.Cog):
             # fw.automod_rule_id = rule_id.id
 
         if bypass == 4:
-            rule = await ctx.guild.fetch_automod_rule(guild_service.get_guild().automod_genius_id)
-            rule_id = await rule.edit(trigger=discord.AutoModTrigger(keyword_filter=rule.trigger.keyword_filter + [f"*{phrase}*"]))
-            rule_id = rule_id.id
-            fw.automod_rule_id = rule_id
+            try:
+                rule = await ctx.guild.fetch_automod_rule(guild_service.get_guild().automod_genius_id)
+                rule_id = await rule.edit(trigger=discord.AutoModTrigger(keyword_filter=rule.trigger.keyword_filter + [f"*{phrase}*"]))
+                rule_id = rule_id.id
+                fw.automod_rule_id = rule_id
+            except:
+                pass
             # rule_id = await ctx.guild.create_automod_rule(name=f"Filter Word for: {phrase}", event_type=discord.AutoModRuleEventType.message_send,
             #     trigger=discord.AutoModTrigger(type=discord.AutoModRuleTriggerType.keyword,
             #     keyword_filter=[f"*{phrase}*"]), actions=[discord.AutoModRuleAction(channel_id=guild_service.get_guild().channel_automod_log),
@@ -127,10 +137,13 @@ class Filters(commands.Cog):
             # fw.automod_rule_id = rule_id.id
 
         if bypass == 5:
-            rule = await ctx.guild.fetch_automod_rule(guild_service.get_guild().automod_moderator_id)
-            rule_id = await rule.edit(trigger=discord.AutoModTrigger(keyword_filter=rule.trigger.keyword_filter + [f"*{phrase}*"]))
-            rule_id = rule_id.id
-            fw.automod_rule_id = rule_id
+            try:
+                rule = await ctx.guild.fetch_automod_rule(guild_service.get_guild().automod_moderator_id)
+                rule_id = await rule.edit(trigger=discord.AutoModTrigger(keyword_filter=rule.trigger.keyword_filter + [f"*{phrase}*"]))
+                rule_id = rule_id.id
+                fw.automod_rule_id = rule_id
+            except:
+                pass
             # rule_id = await ctx.guild.create_automod_rule(name=f"Filter Word for: {phrase}", event_type=discord.AutoModRuleEventType.message_send,
             #     trigger=discord.AutoModTrigger(type=discord.AutoModRuleTriggerType.keyword,
             #     keyword_filter=[f"*{phrase}*"]), actions=[discord.AutoModRuleAction(channel_id=guild_service.get_guild().channel_automod_log),
@@ -140,10 +153,13 @@ class Filters(commands.Cog):
             # fw.automod_rule_id = rule_id.id
 
         if bypass == 6:
-            rule = await ctx.guild.fetch_automod_rule(guild_service.get_guild().automod_admin_id)
-            rule_id = await rule.edit(trigger=discord.AutoModTrigger(keyword_filter=rule.trigger.keyword_filter + [f"*{phrase}*"]))
-            rule_id = rule_id.id
-            fw.automod_rule_id = rule_id
+            try:
+                rule = await ctx.guild.fetch_automod_rule(guild_service.get_guild().automod_admin_id)
+                rule_id = await rule.edit(trigger=discord.AutoModTrigger(keyword_filter=rule.trigger.keyword_filter + [f"*{phrase}*"]))
+                rule_id = rule_id.id
+                fw.automod_rule_id = rule_id
+            except:
+                pass
             # rule_id = await ctx.guild.create_automod_rule(name=f"Filter Word for: {phrase}", event_type=discord.AutoModRuleEventType.message_send,
             #     trigger=discord.AutoModTrigger(type=discord.AutoModRuleTriggerType.keyword,
             #     keyword_filter=[f"*{phrase}*"]), actions=[discord.AutoModRuleAction(channel_id=guild_service.get_guild().channel_automod_log),
@@ -152,10 +168,13 @@ class Filters(commands.Cog):
             # fw.automod_rule_id = rule_id.id
 
         if bypass >= 7:
-            rule = await ctx.guild.fetch_automod_rule(guild_service.get_guild().automod_everyone_id)
-            rule_id = await rule.edit(trigger=discord.AutoModTrigger(keyword_filter=rule.trigger.keyword_filter + [f"*{phrase}*"]))
-            rule_id = rule_id.id
-            fw.automod_rule_id = rule_id
+            try:
+                rule = await ctx.guild.fetch_automod_rule(guild_service.get_guild().automod_everyone_id)
+                rule_id = await rule.edit(trigger=discord.AutoModTrigger(keyword_filter=rule.trigger.keyword_filter + [f"*{phrase}*"]))
+                rule_id = rule_id.id
+                fw.automod_rule_id = rule_id
+            except:
+                pass
             # rule_id = await ctx.guild.create_automod_rule(name=f"Filter Word for: {phrase}", event_type=discord.AutoModRuleEventType.message_send,
             #     trigger=discord.AutoModTrigger(type=discord.AutoModRuleTriggerType.keyword,
             #     keyword_filter=[f"*{phrase}*"]), actions=[discord.AutoModRuleAction(channel_id=guild_service.get_guild().channel_automod_log),
@@ -216,8 +235,11 @@ class Filters(commands.Cog):
         words = list(filter(lambda w: w.word.lower() == word.lower(), words))
 
         if len(words) > 0:
-            if ctx.guild.fetch_automod_rule(words[0].automod_rule_id):
-                await (await ctx.guild.fetch_automod_rule(words[0].automod_rule_id)).delete()
+            try:
+                if ctx.guild.fetch_automod_rule(words[0].automod_rule_id):
+                    await (await ctx.guild.fetch_automod_rule(words[0].automod_rule_id)).delete()
+            except:
+                pass
             guild_service.remove_filtered_word(words[0].word)
             await ctx.send_success("Deleted!")
         else:
