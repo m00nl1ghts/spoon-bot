@@ -137,7 +137,7 @@ def setup_context_commands(bot: commands.Bot):
     async def generate_report_msg(interaction: discord.Interaction, message: discord.Message) -> None:
         ctx = GIRContext(interaction)
         ctx.whisper = True
-        member = await ModsAndAboveMember.transform(interaction, message.author)
+        member = await ModsAndAboveMember.transform(interaction=interaction, value=message.author)
         await manual_report(ctx.author, message)
         await ctx.send_success("Generated report!")
 

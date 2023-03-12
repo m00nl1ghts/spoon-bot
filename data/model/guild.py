@@ -37,6 +37,7 @@ class Guild(mongoengine.Document):
     channel_reports           = mongoengine.IntField()
     channel_subnews           = mongoengine.IntField()
     channel_music             = mongoengine.IntField()
+    channel_automod_log       = mongoengine.IntField()
 
     emoji_logging_webhook     = mongoengine.StringField()
     locked_channels           = mongoengine.ListField(default=[])
@@ -51,6 +52,13 @@ class Guild(mongoengine.Document):
     memes                     = mongoengine.EmbeddedDocumentListField(Tag, default=[])
     sabbath_mode              = mongoengine.BooleanField(default=False)
     ban_today_spam_accounts   = mongoengine.BooleanField(default=False)
+
+    automod_memberplus_id     = mongoengine.IntField()
+    automod_memberpro_id      = mongoengine.IntField()
+    automod_genius_id         = mongoengine.IntField()
+    automod_admin_id          = mongoengine.IntField()
+    automod_everyone_id       = mongoengine.IntField()
+    automod_moderator_id      = mongoengine.IntField()
     
     meta = {
         'db_alias': 'default',
