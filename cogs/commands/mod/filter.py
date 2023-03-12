@@ -85,6 +85,84 @@ class Filters(commands.Cog):
         fw.notify = notify
         fw.word = phrase
 
+        if bypass == 1:
+            rule = await ctx.guild.fetch_automod_rule(guild_service.get_guild().automod_memberplus_id)
+            rule_id = await rule.edit(trigger=discord.AutoModTrigger(keyword_filter=rule.trigger.keyword_filter + [f"*{phrase}*"]))
+            rule_id = rule_id.id
+            fw.automod_rule_id = rule_id
+            # rule_id = await ctx.guild.create_automod_rule(name=f"Filter Word for: {phrase}", event_type=discord.AutoModRuleEventType.message_send,
+            #     trigger=discord.AutoModTrigger(type=discord.AutoModRuleTriggerType.keyword,
+            #     keyword_filter=[f"*{phrase}*"]), actions=[discord.AutoModRuleAction(channel_id=guild_service.get_guild().channel_automod_log),
+            #     discord.AutoModRuleAction()],
+            #     enabled=True, exempt_roles=[ctx.guild.get_role(guild_service.get_guild().role_memberplus), ctx.guild.get_role(guild_service.get_guild().role_memberpro), ctx.guild.get_role(guild_service.get_guild().role_memberedition),
+            #                                 ctx.guild.get_role(guild_service.get_guild().role_genius),
+            #     ctx.guild.get_role(guild_service.get_guild().role_moderator), ctx.guild.get_role(guild_service.get_guild().role_administrator)], reason=f"Automod rule for filter word {phrase}")
+            # fw.automod_rule_id = rule_id.id
+            
+        if bypass == 2:
+            rule = await ctx.guild.fetch_automod_rule(guild_service.get_guild().automod_memberpro_id)
+            rule_id = await rule.edit(trigger=discord.AutoModTrigger(keyword_filter=rule.trigger.keyword_filter + [f"*{phrase}*"]))
+            rule_id = rule_id.id
+            fw.automod_rule_id = rule_id
+            # rule_id = await ctx.guildcord.create_automod_rule(name=f"Filter Word for: {phrase}", event_type=discord.AutoModRuleEventType.message_send,
+            #     trigger=discord.AutoModTrigger(type=discord.AutoModRuleTriggerType.keyword,
+            #     keyword_filter=[f"*{phrase}*"]), actions=[discord.AutoModRuleAction(channel_id=guild_service.get_guild().channel_automod_log),
+            #     discord.AutoModRuleAction()],
+            #     enabled=True, exempt_roles=[ctx.guild.get_role(guild_service.get_guild().role_memberpro), ctx.guild.get_role(guild_service.get_guild().role_memberedition),
+            #                                 ctx.guild.get_role(guild_service.get_guild().role_genius),
+            #     ctx.guild.get_role(guild_service.get_guild().role_moderator), ctx.guild.get_role(guild_service.get_guild().role_administrator)], reason=f"Automod rule for filter word {phrase}")
+            # fw.automod_rule_id = rule_id.id
+
+        if bypass == 4:
+            rule = await ctx.guild.fetch_automod_rule(guild_service.get_guild().automod_genius_id)
+            rule_id = await rule.edit(trigger=discord.AutoModTrigger(keyword_filter=rule.trigger.keyword_filter + [f"*{phrase}*"]))
+            rule_id = rule_id.id
+            fw.automod_rule_id = rule_id
+            # rule_id = await ctx.guild.create_automod_rule(name=f"Filter Word for: {phrase}", event_type=discord.AutoModRuleEventType.message_send,
+            #     trigger=discord.AutoModTrigger(type=discord.AutoModRuleTriggerType.keyword,
+            #     keyword_filter=[f"*{phrase}*"]), actions=[discord.AutoModRuleAction(channel_id=guild_service.get_guild().channel_automod_log),
+            #     discord.AutoModRuleAction()],
+            #     enabled=True, exempt_roles=[ctx.guild.get_role(guild_service.get_guild().role_genius),
+            #     ctx.guild.get_role(guild_service.get_guild().role_moderator), ctx.guild.get_role(guild_service.get_guild().role_administrator)], reason=f"Automod rule for filter word {phrase}")
+            # fw.automod_rule_id = rule_id.id
+
+        if bypass == 5:
+            rule = await ctx.guild.fetch_automod_rule(guild_service.get_guild().automod_moderator_id)
+            rule_id = await rule.edit(trigger=discord.AutoModTrigger(keyword_filter=rule.trigger.keyword_filter + [f"*{phrase}*"]))
+            rule_id = rule_id.id
+            fw.automod_rule_id = rule_id
+            # rule_id = await ctx.guild.create_automod_rule(name=f"Filter Word for: {phrase}", event_type=discord.AutoModRuleEventType.message_send,
+            #     trigger=discord.AutoModTrigger(type=discord.AutoModRuleTriggerType.keyword,
+            #     keyword_filter=[f"*{phrase}*"]), actions=[discord.AutoModRuleAction(channel_id=guild_service.get_guild().channel_automod_log),
+            #     discord.AutoModRuleAction()],
+            #     enabled=True, exempt_roles=[
+            #     ctx.guild.get_role(guild_service.get_guild().role_moderator), ctx.guild.get_role(guild_service.get_guild().role_administrator)], reason=f"Automod rule for filter word {phrase}")
+            # fw.automod_rule_id = rule_id.id
+
+        if bypass == 6:
+            rule = await ctx.guild.fetch_automod_rule(guild_service.get_guild().automod_admin_id)
+            rule_id = await rule.edit(trigger=discord.AutoModTrigger(keyword_filter=rule.trigger.keyword_filter + [f"*{phrase}*"]))
+            rule_id = rule_id.id
+            fw.automod_rule_id = rule_id
+            # rule_id = await ctx.guild.create_automod_rule(name=f"Filter Word for: {phrase}", event_type=discord.AutoModRuleEventType.message_send,
+            #     trigger=discord.AutoModTrigger(type=discord.AutoModRuleTriggerType.keyword,
+            #     keyword_filter=[f"*{phrase}*"]), actions=[discord.AutoModRuleAction(channel_id=guild_service.get_guild().channel_automod_log),
+            #     discord.AutoModRuleAction()],
+            #     enabled=True, exempt_roles=[ctx.guild.get_role(guild_service.get_guild().role_administrator)], reason=f"Automod rule for filter word {phrase}")
+            # fw.automod_rule_id = rule_id.id
+
+        if bypass >= 7:
+            rule = await ctx.guild.fetch_automod_rule(guild_service.get_guild().automod_everyone_id)
+            rule_id = await rule.edit(trigger=discord.AutoModTrigger(keyword_filter=rule.trigger.keyword_filter + [f"*{phrase}*"]))
+            rule_id = rule_id.id
+            fw.automod_rule_id = rule_id
+            # rule_id = await ctx.guild.create_automod_rule(name=f"Filter Word for: {phrase}", event_type=discord.AutoModRuleEventType.message_send,
+            #     trigger=discord.AutoModTrigger(type=discord.AutoModRuleTriggerType.keyword,
+            #     keyword_filter=[f"*{phrase}*"]), actions=[discord.AutoModRuleAction(channel_id=guild_service.get_guild().channel_automod_log),
+            #     discord.AutoModRuleAction()],
+            #     enabled=True, exempt_roles=[], reason=f"Automod rule for filter word {phrase}")
+            # fw.automod_rule_id = rule_id.id
+
         if not guild_service.add_filtered_word(fw):
             raise commands.BadArgument("That word is already filtered!")
 
@@ -138,6 +216,8 @@ class Filters(commands.Cog):
         words = list(filter(lambda w: w.word.lower() == word.lower(), words))
 
         if len(words) > 0:
+            if ctx.guild.fetch_automod_rule(words[0].automod_rule_id):
+                await (await ctx.guild.fetch_automod_rule(words[0].automod_rule_id)).delete()
             guild_service.remove_filtered_word(words[0].word)
             await ctx.send_success("Deleted!")
         else:

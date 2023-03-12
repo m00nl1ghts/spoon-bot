@@ -60,6 +60,17 @@ async def setup():
     guild.channel_botspam        = 123  # put in the channel IDs for your server here
     # optional, needed for booster #emote-suggestions channel
     guild.channel_booster_emoji  = 123  # put in the channel IDs for your server here
+    # required, needed for logs for automod
+    guild.channel_automod_log    = 123  # put in the channel IDs for your server here
+
+
+    # required, needed for automod
+    guild.automod_memberplus_id = 123  # put in the role IDs for your server here
+    guild.automod_memberpro_id = 123  # put in the role IDs for your server here
+    guild.automod_genius_id = 123  # put in the role IDs for your server here
+    guild.automod_moderator_id = 123  # put in the role IDs for your server here
+    guild.automod_admin_id = 123  # put in the role IDs for your server here
+    guild.automod_everyone_id = 123  # put in the role IDs for your server here
 
     # you can fill these in if you want with IDs, or you ca use commands later
     guild.logging_excluded_channels = []  # put in a channel if you want (ignored in logging)
